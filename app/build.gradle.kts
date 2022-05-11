@@ -39,6 +39,8 @@ android {
     useLibrary("android.test.base")
 
     buildFeatures {
+        // https://developer.android.com/jetpack/compose/interop/adding
+        compose = true
         // https://firebase.google.com/support/release-notes/android
         viewBinding = true
     }
@@ -67,6 +69,10 @@ android {
         encoding = "UTF-8"
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.1"
     }
 
     kotlinOptions {
@@ -181,6 +187,15 @@ dependencies {
     // https://developer.android.com/jetpack/androidx/releases/constraintlayout
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation("androidx.preference:preference-ktx:1.1.1")
+
+    // Compose
+    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha10")
+    implementation("com.google.android.material:compose-theme-adapter-3:1.0.8")
+    implementation( "androidx.compose.animation:animation:1.1.1")
+    implementation( "androidx.compose.ui:ui-tooling:1.1.1")
+    implementation( "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
 
     // ViewModel and LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
