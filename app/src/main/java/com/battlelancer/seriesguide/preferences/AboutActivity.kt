@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -88,10 +88,10 @@ class AboutActivity : ComponentActivity() {
                             text = versionString,
                             style = MaterialTheme.typography.bodyLarge
                         )
-                        Button(onClick = onOpenWebsite) {
+                        FilledTonalButton(onClick = onOpenWebsite) {
                             Text(text = stringResource(id = R.string.website))
                         }
-                        Button(onClick = onOpenPrivacyPolicy) {
+                        FilledTonalButton(onClick = onOpenPrivacyPolicy) {
                             Text(text = stringResource(id = R.string.privacy_policy))
                         }
                         Text(
@@ -99,7 +99,7 @@ class AboutActivity : ComponentActivity() {
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(top = 16.dp)
                         )
-                        Button(onClick = onOpenCredits) {
+                        FilledTonalButton(onClick = onOpenCredits) {
                             Text(text = stringResource(id = R.string.licences_and_credits))
                         }
                         Text(
@@ -107,10 +107,10 @@ class AboutActivity : ComponentActivity() {
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(top = 16.dp)
                         )
-                        Button(onClick = onOpenTmdbTerms) {
+                        FilledTonalButton(onClick = onOpenTmdbTerms) {
                             Text(text = stringResource(id = R.string.tmdb_terms))
                         }
-                        Button(onClick = onOpenTmdbApiTerms) {
+                        FilledTonalButton(onClick = onOpenTmdbApiTerms) {
                             Text(text = stringResource(id = R.string.tmdb_api_terms))
                         }
                         Text(
@@ -118,7 +118,7 @@ class AboutActivity : ComponentActivity() {
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(top = 16.dp)
                         )
-                        Button(onClick = onOpenTraktTerms) {
+                        FilledTonalButton(onClick = onOpenTraktTerms) {
                             Text(text = stringResource(id = R.string.trakt_terms))
                         }
                     }
