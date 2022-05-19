@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
@@ -20,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.battlelancer.seriesguide.R
 import com.battlelancer.seriesguide.ui.SeriesGuidePreferences
 import com.battlelancer.seriesguide.util.Utils
@@ -37,9 +39,14 @@ class AboutActivity : ComponentActivity() {
         setContent {
             Mdc3Theme {
                 About(
+                    versionString = Utils.getVersionString(this),
                     onBackPressed = { onBackPressed() },
                     onOpenWebsite = { viewUrl(R.string.url_website) },
-                    onOpenPrivacyPolicy = { viewUrl(R.string.url_privacy) }
+                    onOpenPrivacyPolicy = { viewUrl(R.string.url_privacy) },
+                    onOpenCredits = { viewUrl(R.string.url_credits) },
+                    onOpenTmdbTerms = { viewUrl(R.string.url_terms_tmdb) },
+                    onOpenTmdbApiTerms = { viewUrl(R.string.url_terms_tmdb_api) },
+                    onOpenTraktTerms = { viewUrl(R.string.url_terms_trakt) }
                 )
             }
         }
@@ -47,9 +54,14 @@ class AboutActivity : ComponentActivity() {
 
     @Composable
     fun About(
+        versionString: String,
         onBackPressed: () -> Unit,
         onOpenWebsite: () -> Unit,
-        onOpenPrivacyPolicy: () -> Unit
+        onOpenPrivacyPolicy: () -> Unit,
+        onOpenCredits: () -> Unit,
+        onOpenTmdbTerms: () -> Unit,
+        onOpenTmdbApiTerms: () -> Unit,
+        onOpenTraktTerms: () -> Unit
     ) {
         Scaffold(
             topBar = {
@@ -68,11 +80,46 @@ class AboutActivity : ComponentActivity() {
             content = { scaffoldPadding ->
                 Box(modifier = Modifier.padding(scaffoldPadding)) {
                     Column() {
+                        Text(
+                            text = stringResource(id = R.string.app_name),
+                            style = MaterialTheme.typography.headlineLarge
+                        )
+                        Text(
+                            text = versionString,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
                         Button(onClick = onOpenWebsite) {
                             Text(text = stringResource(id = R.string.website))
                         }
                         Button(onClick = onOpenPrivacyPolicy) {
                             Text(text = stringResource(id = R.string.privacy_policy))
+                        }
+                        Text(
+                            text = stringResource(id = R.string.about_open_source),
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Button(onClick = onOpenCredits) {
+                            Text(text = stringResource(id = R.string.licences_and_credits))
+                        }
+                        Text(
+                            text = stringResource(id = R.string.licence_themoviedb),
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Button(onClick = onOpenTmdbTerms) {
+                            Text(text = stringResource(id = R.string.tmdb_terms))
+                        }
+                        Button(onClick = onOpenTmdbApiTerms) {
+                            Text(text = stringResource(id = R.string.tmdb_api_terms))
+                        }
+                        Text(
+                            text = stringResource(id = R.string.licence_trakt),
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Button(onClick = onOpenTraktTerms) {
+                            Text(text = stringResource(id = R.string.trakt_terms))
                         }
                     }
                 }
@@ -84,17 +131,16 @@ class AboutActivity : ComponentActivity() {
     @Composable
     fun AboutPreview() {
         About(
+            "v42 (Database v42)",
+            {},
+            {},
+            {},
+            {},
             {},
             {},
             {}
         )
     }
-
-//    private fun setupActionBar() {
-//        val toolbar = findViewById<Toolbar>(R.id.sgToolbar)
-//        setSupportActionBar(toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
