@@ -10,6 +10,7 @@ import com.battlelancer.seriesguide.shows.database.SgShow2CloudUpdate
 import com.battlelancer.seriesguide.shows.search.discover.SearchResult
 import com.battlelancer.seriesguide.tmdbapi.TmdbTools2
 import com.battlelancer.seriesguide.util.Errors.Companion.logAndReportHexagon
+import com.battlelancer.seriesguide.util.LanguageTools
 import com.github.michaelbull.result.getOrElse
 import com.google.api.client.util.DateTime
 import com.uwetrottmann.androidutils.AndroidUtils
@@ -273,7 +274,10 @@ class HexagonShowSync @Inject constructor(
                 if (!toAdd.containsKey(showTmdbId)) {
                     val item = SearchResult()
                     item.tmdbId = showTmdbId
-                    item.language = show.language
+                    val languageCode: String? = show.language
+                    item.language = if (languageCode != null) {
+                        LanguageTools.mapLegacyShowCode(languageCode)
+                    } else null
                     item.title = ""
                     toAdd[showTmdbId] = item
                 }
